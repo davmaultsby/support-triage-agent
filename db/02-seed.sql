@@ -1,0 +1,78 @@
+-- Fictional customers and orders. The eval tickets in testdata/tickets.jsonl refer to these rows.
+
+-- Inserted in order into a fresh table, so the serial ids are 1 to 12.
+INSERT INTO customers (email, name) VALUES
+    ('ava.chen@example.com',     'Ava Chen'),
+    ('ben.okafor@example.com',   'Ben Okafor'),
+    ('carla.diaz@example.com',   'Carla Diaz'),
+    ('dev.patel@example.com',    'Dev Patel'),
+    ('emma.larsen@example.com',  'Emma Larsen'),
+    ('farid.haddad@example.com', 'Farid Haddad'),
+    ('grace.kim@example.com',    'Grace Kim'),
+    ('hugo.martin@example.com',  'Hugo Martin'),
+    ('isla.brown@example.com',   'Isla Brown'),
+    ('jonas.weber@example.com',  'Jonas Weber'),
+    ('kemi.adeyemi@example.com', 'Kemi Adeyemi'),
+    ('liam.walsh@example.com',   'Liam Walsh');
+
+INSERT INTO orders (id, customer_id, status, created_at, ship_by, ship_to) VALUES
+    ('ORD-1001', 1,  'delivered',     '2026-10-02 14:10Z', '2026-10-07', '18 Harbor Lane, Portland, ME 04101'),
+    ('ORD-1002', 1,  'in_production', '2026-10-22 09:30Z', '2026-10-30', '18 Harbor Lane, Portland, ME 04101'),
+    ('ORD-1003', 2,  'shipped',       '2026-10-15 16:45Z', '2026-10-21', '402 Elm Street, Columbus, OH 43215'),
+    ('ORD-1004', 2,  'proof_pending', '2026-10-25 11:05Z', NULL,         '402 Elm Street, Columbus, OH 43215'),
+    ('ORD-1005', 3,  'delivered',     '2026-10-05 10:00Z', '2026-10-10', '77 Mesa Drive, Tucson, AZ 85701'),
+    ('ORD-1006', 3,  'shipped',       '2026-10-16 13:20Z', '2026-10-22', '77 Mesa Drive, Tucson, AZ 85701'),
+    ('ORD-1007', 4,  'in_production', '2026-10-23 08:15Z', '2026-10-29', '9 Birch Court, Austin, TX 78701'),
+    ('ORD-1008', 4,  'delivered',     '2026-10-01 19:40Z', '2026-10-06', '9 Birch Court, Austin, TX 78701'),
+    ('ORD-1009', 5,  'proof_pending', '2026-10-24 15:55Z', NULL,         '230 Fjord Road, Minneapolis, MN 55401'),
+    ('ORD-1010', 5,  'cancelled',     '2026-10-12 12:00Z', NULL,         '230 Fjord Road, Minneapolis, MN 55401'),
+    ('ORD-1011', 6,  'shipped',       '2026-10-17 07:50Z', '2026-10-23', '5 Cedar Avenue, Dearborn, MI 48124'),
+    ('ORD-1012', 7,  'delivered',     '2026-10-04 17:25Z', '2026-10-09', '61 Lotus Street, Seattle, WA 98101'),
+    ('ORD-1013', 7,  'in_production', '2026-10-24 10:10Z', '2026-11-02', '61 Lotus Street, Seattle, WA 98101'),
+    ('ORD-1014', 8,  'delivered',     '2026-10-06 09:05Z', '2026-10-11', '14 Rue Street, New Orleans, LA 70112'),
+    ('ORD-1015', 9,  'shipped',       '2026-10-18 14:30Z', '2026-10-24', '300 Loch Way, Boston, MA 02108'),
+    ('ORD-1016', 10, 'proof_pending', '2026-10-26 16:00Z', NULL,         '88 Rhine Boulevard, Milwaukee, WI 53202'),
+    ('ORD-1017', 10, 'delivered',     '2026-10-03 11:45Z', '2026-10-08', '88 Rhine Boulevard, Milwaukee, WI 53202'),
+    ('ORD-1018', 11, 'in_production', '2026-10-24 13:35Z', '2026-10-31', '12 Palm Grove, Atlanta, GA 30303'),
+    ('ORD-1019', 12, 'delivered',     '2026-10-07 18:20Z', '2026-10-12', '45 Clover Road, Denver, CO 80202'),
+    ('ORD-1020', 12, 'shipped',       '2026-10-19 09:00Z', '2026-10-25', '45 Clover Road, Denver, CO 80202'),
+    ('ORD-1021', 11, 'delivered',     '2026-10-08 10:40Z', '2026-10-13', '12 Palm Grove, Atlanta, GA 30303');
+
+INSERT INTO order_items (order_id, product, quantity, price_cents) VALUES
+    ('ORD-1001', 'Die cut stickers, 3x3 in',        100,  7900),
+    ('ORD-1002', 'Custom labels, 2x2 in',           500, 11200),
+    ('ORD-1003', 'Holographic stickers, 2x2 in',    200,  9600),
+    ('ORD-1004', 'Magnets, 3x3 in',                  50,  6500),
+    ('ORD-1005', 'Die cut stickers, 4x4 in',        200, 13800),
+    ('ORD-1005', 'Sticker sheets',                   50,  4500),
+    ('ORD-1006', 'Clear stickers, 3x3 in',          100,  8900),
+    ('ORD-1007', 'Vinyl banner, 2x6 ft',              1,  5400),
+    ('ORD-1008', 'Kiss cut stickers, 2x2 in',       500, 11900),
+    ('ORD-1009', 'Roll labels, 3x2 in',            1000, 16400),
+    ('ORD-1010', 'Die cut stickers, 2x2 in',         50,  3900),
+    ('ORD-1011', 'Custom buttons, 1.25 in',         100,  7200),
+    ('ORD-1012', 'Die cut stickers, 5x5 in',        100, 12900),
+    ('ORD-1013', 'Bumper stickers, 3x10 in',         50,  9800),
+    ('ORD-1014', 'Holographic stickers, 3x3 in',    300, 18700),
+    ('ORD-1015', 'Custom packing tape, 6 rolls',      6,  6600),
+    ('ORD-1016', 'Die cut stickers, 3x3 in',       1000, 29900),
+    ('ORD-1017', 'Magnets, 4x4 in',                  25,  5800),
+    ('ORD-1018', 'Clear labels, 2x3 in',            250,  8400),
+    ('ORD-1019', 'Kiss cut stickers, 3x3 in',       100,  8100),
+    ('ORD-1020', 'Die cut stickers, 2x2 in',        100,  5900),
+    ('ORD-1021', 'Sticker sheets',                   30,  3600);
+
+INSERT INTO shipments (order_id, carrier, tracking_number, status, shipped_at, delivered_at) VALUES
+    ('ORD-1001', 'UPS',   '1Z999AA10000000001',     'delivered',  '2026-10-06 15:00Z', '2026-10-09 12:30Z'),
+    ('ORD-1003', 'USPS',  '9400100000000000000003', 'in_transit', '2026-10-21 17:10Z', NULL),
+    ('ORD-1005', 'FedEx', '770000000005',           'delivered',  '2026-10-09 16:00Z', '2026-10-13 10:15Z'),
+    ('ORD-1006', 'UPS',   '1Z999AA10000000006',     'exception',  '2026-10-22 18:30Z', NULL),
+    ('ORD-1008', 'USPS',  '9400100000000000000008', 'delivered',  '2026-10-05 14:00Z', '2026-10-08 11:00Z'),
+    ('ORD-1011', 'FedEx', '770000000011',           'in_transit', '2026-10-23 15:45Z', NULL),
+    ('ORD-1012', 'UPS',   '1Z999AA10000000012',     'delivered',  '2026-10-08 13:00Z', '2026-10-11 09:40Z'),
+    ('ORD-1014', 'USPS',  '9400100000000000000014', 'delivered',  '2026-10-10 12:00Z', '2026-10-14 16:20Z'),
+    ('ORD-1015', 'UPS',   '1Z999AA10000000015',     'in_transit', '2026-10-24 10:30Z', NULL),
+    ('ORD-1017', 'FedEx', '770000000017',           'delivered',  '2026-10-07 17:00Z', '2026-10-10 13:05Z'),
+    ('ORD-1019', 'USPS',  '9400100000000000000019', 'delivered',  '2026-10-11 15:30Z', '2026-10-15 10:50Z'),
+    ('ORD-1020', 'UPS',   '1Z999AA10000000020',     'in_transit', '2026-10-25 16:20Z', NULL),
+    ('ORD-1021', 'USPS',  '9400100000000000000021', 'delivered',  '2026-10-12 14:10Z', '2026-10-16 11:30Z');

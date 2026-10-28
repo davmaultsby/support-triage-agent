@@ -1,0 +1,13 @@
+# Postgres with the schema and seed data loaded, on the port the code expects.
+# Recreate it (docker compose down && docker compose up -d) to reset the data.
+services:
+  postgres:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: triage
+      POSTGRES_PASSWORD: triage
+      POSTGRES_DB: triage
+    ports:
+      - "54329:5432"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d:ro

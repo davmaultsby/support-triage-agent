@@ -1,0 +1,56 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  customer(email: String!): Customer
+  order(id: ID!): Order
+}
+
+type Mutation {
+  # Records a refund for a person to approve. It never moves money.
+  # Fails if the amount is more than the order's refundable balance.
+  requestRefund(orderId: ID!, amountCents: Int!, reason: String!): RefundRequest!
+}
+
+type Customer {
+  email: String!
+  name: String!
+  orders: [Order!]!
+}
+
+type Order {
+  id: ID!
+  customerEmail: String!
+  status: String!
+  createdAt: String!
+  shipBy: String
+  shipTo: String!
+  totalCents: Int!
+  # Total minus refunds already requested or approved. Zero for cancelled orders.
+  refundableCents: Int!
+  items: [Item!]!
+  shipment: Shipment
+}
+
+type Item {
+  product: String!
+  quantity: Int!
+  priceCents: Int!
+}
+
+type Shipment {
+  carrier: String!
+  trackingNumber: String!
+  status: String!
+  shippedAt: String!
+  deliveredAt: String
+}
+
+type RefundRequest {
+  id: ID!
+  orderId: ID!
+  amountCents: Int!
+  status: String!
+}
